@@ -1,11 +1,15 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useSelector, useDispatch } from 'react-redux';
+import {incremented,decremented} from './slices/counterSlice';
+import { RootState } from './app/store';
 
+
+// {value: 1}
 function App() {
-  const [count, setCount] = useState(0)
-
+ const dispatch = useDispatch();
+ const count = useSelector((state:RootState)=>state.value) 
   return (
     <>
       <div>
@@ -18,7 +22,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => dispatch(incremented())}>
           count is {count}
         </button>
         <p>
